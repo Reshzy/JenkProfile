@@ -283,6 +283,42 @@
         ease: "power2.out"
       }, "-=0.6");
 
+    // Hero backdrop clip-path morph animation
+    const heroBackdrop = document.querySelector(".hero-text-backdrop");
+    if (heroBackdrop) {
+      const shapeA = "polygon(5% 0, 95% 0, 90% 100%, 10% 100%)";
+      const shapeB = "polygon(2% 0, 98% 0, 98% 100%, 2% 100%)";
+      const shapeC = "polygon(10% 0, 90% 0, 95% 100%, 5% 100%)";
+
+      gsap.set(heroBackdrop, { clipPath: shapeA, webkitClipPath: shapeA });
+
+      gsap.timeline({ repeat: -1, repeatDelay: 0.4 })
+        .to(heroBackdrop, {
+          duration: 2,
+          clipPath: shapeB,
+          webkitClipPath: shapeB,
+          ease: "power2.inOut"
+        })
+        .to(heroBackdrop, {
+          duration: 2,
+          clipPath: shapeC,
+          webkitClipPath: shapeC,
+          ease: "power2.inOut"
+        })
+        .to(heroBackdrop, {
+          duration: 2,
+          clipPath: shapeB,
+          webkitClipPath: shapeB,
+          ease: "power2.inOut"
+        })
+        .to(heroBackdrop, {
+          duration: 2,
+          clipPath: shapeA,
+          webkitClipPath: shapeA,
+          ease: "power2.inOut"
+        });
+    }
+
     // Scroll indicator animation
     gsap.to(".scroll-indicator span", {
       duration: 1.5,
