@@ -95,6 +95,22 @@ body {
   margin-top: 80px;
 }
 
+.spline-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.spline-background iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .hero::before {
   content: '';
   position: absolute;
@@ -105,6 +121,8 @@ body {
   top: 10%;
   right: 10%;
   animation: float 6s ease-in-out infinite;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .hero::after {
@@ -117,6 +135,8 @@ body {
   bottom: 20%;
   left: 5%;
   animation: float 8s ease-in-out infinite;
+  z-index: 2;
+  pointer-events: none;
 }
 
 @keyframes float {
@@ -126,7 +146,7 @@ body {
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   text-align: center;
   max-width: 800px;
   padding: 0 20px;
@@ -176,11 +196,11 @@ body {
 
 /* ==================== SECTIONS ==================== */
 .section {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 40px;
+  padding: 60px 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -194,7 +214,7 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   background: linear-gradient(135deg, #ff006e, #fb5607);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

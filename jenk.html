@@ -23,6 +23,9 @@
 
   <!-- Hero Section -->
   <header class="hero">
+    <div class="spline-background">
+      <iframe src='https://my.spline.design/newton39spendulumbuthitsdifferent-7TMPPCU97yW8SSjefMKksl7s/' frameborder='0' width='100%' height='100%'></iframe>
+    </div>
     <div class="hero-content">
       <h1 class="hero-title">Jane Faith Marie A. Oblenda</h1>
       <p class="hero-subtitle">Artist & Content Creator from the Philippines</p>
@@ -40,9 +43,13 @@
       </div>
       <div class="section-text">
         <h2>About Me</h2>
-        <p>Hello! My name is <strong>Jane</strong>, but I'm known online as <strong>jenky</strong>. I'm a passionate artist from the Philippines dedicated to creating compelling visual content.</p>
-        <p>I work with content creators and serve as one of the content creators for the official Mobile Legends: Bang Bang page. My journey began in Paulina Homes, Dalipuga, Iligan City, where my two older brothers introduced me to the digital world and inspired my creative pursuits.</p>
-        <p>My aspirations include becoming a recognized artist, securing a stable career in my field, and reconnecting with my childhood friends scattered across Mindanao and beyond.</p>
+        <p>Hello! My name is <strong>Jane</strong>, but I'm known online as <strong>jenky</strong>. I'm a passionate
+          artist from the Philippines dedicated to creating compelling visual content.</p>
+        <p>I work with content creators and serve as one of the content creators for the official Mobile Legends: Bang
+          Bang page. My journey began in Paulina Homes, Dalipuga, Iligan City, where my two older brothers introduced me
+          to the digital world and inspired my creative pursuits.</p>
+        <p>My aspirations include becoming a recognized artist, securing a stable career in my field, and reconnecting
+          with my childhood friends scattered across Mindanao and beyond.</p>
       </div>
     </div>
   </section>
@@ -104,17 +111,67 @@
   <!-- GSAP Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  
+
   <script>
     // Register ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
 
-    // Navbar animation
+    // Navbar intro animation
     gsap.from(".navbar", {
       duration: 1,
       y: -100,
       opacity: 0,
       ease: "power2.out"
+    });
+
+    // Navbar shrink / expand on scroll
+    const navbar = document.querySelector(".navbar");
+    const navLogo = document.querySelector(".nav-logo");
+    let lastScrollY = window.scrollY;
+    let isShrunk = false;
+
+    const shrinkNavbar = () => {
+      if (isShrunk) return;
+      isShrunk = true;
+      gsap.to(navbar, {
+        height: 60,
+        duration: 0.25,
+        ease: "power2.out"
+      });
+      gsap.to(navLogo, {
+        fontSize: "1.4rem",
+        duration: 0.25,
+        ease: "power2.out"
+      });
+    };
+
+    const expandNavbar = () => {
+      if (!isShrunk) return;
+      isShrunk = false;
+      gsap.to(navbar, {
+        height: 80,
+        duration: 0.25,
+        ease: "power2.out"
+      });
+      gsap.to(navLogo, {
+        fontSize: "1.8rem",
+        duration: 0.25,
+        ease: "power2.out"
+      });
+    };
+
+    window.addEventListener("scroll", () => {
+      const currentY = window.scrollY;
+
+      if (currentY > lastScrollY && currentY > 100) {
+        // Scrolling down
+        shrinkNavbar();
+      } else if (currentY < lastScrollY || currentY <= 100) {
+        // Scrolling up or near top
+        expandNavbar();
+      }
+
+      lastScrollY = currentY;
     });
 
     // Hero content animations
@@ -125,23 +182,23 @@
       opacity: 0,
       ease: "power3.out"
     })
-    .from(".hero-subtitle", {
-      duration: 1,
-      y: 30,
-      opacity: 0,
-      ease: "power3.out"
-    }, "-=0.8")
-    .from(".hero-date", {
-      duration: 1,
-      y: 20,
-      opacity: 0,
-      ease: "power3.out"
-    }, "-=0.8")
-    .from(".scroll-indicator", {
-      duration: 1,
-      opacity: 0,
-      ease: "power2.out"
-    }, "-=0.6");
+      .from(".hero-subtitle", {
+        duration: 1,
+        y: 30,
+        opacity: 0,
+        ease: "power3.out"
+      }, "-=0.8")
+      .from(".hero-date", {
+        duration: 1,
+        y: 20,
+        opacity: 0,
+        ease: "power3.out"
+      }, "-=0.8")
+      .from(".scroll-indicator", {
+        duration: 1,
+        opacity: 0,
+        ease: "power2.out"
+      }, "-=0.6");
 
     // Scroll indicator animation
     gsap.to(".scroll-indicator span", {
