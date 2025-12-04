@@ -187,11 +187,13 @@ body.light-mode {
 
 .hero-text-backdrop {
   display: inline-block;
-  padding: 50px 32px;
-  border-radius: 20px;
+  padding: 50px;
+  border-radius: 20%;
   background: rgba(255, 255, 255, 0.5);
   /* box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3); */
   backdrop-filter: blur(12px);
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  overflow: hidden;
 }
 
 .hero-title {
@@ -200,7 +202,7 @@ body.light-mode {
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 20px;
-  background: linear-gradient(135deg, #ffffff 0%, #ff006e 50%, #fb5607 100%);
+  background: linear-gradient(135deg, #d67505 0%, #ff006e 50%, #fb5607 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -442,6 +444,42 @@ body.light-mode #about::before {
 }
 
 /* ==================== HOBBIES SECTION ==================== */
+#hobbies {
+  position: relative;
+  overflow: hidden;
+  background-color: #141422;
+}
+
+#hobbies::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at top right, rgba(255, 0, 110, 0.18), transparent 55%),
+    radial-gradient(circle at bottom left, rgba(251, 86, 7, 0.18), transparent 55%),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06) 0,
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px,
+      transparent 18px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.04) 0,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 18px
+    );
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+#hobbies .section-content {
+  position: relative;
+  z-index: 1;
+}
+
 .hobbies-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -562,6 +600,31 @@ body.light-mode .hobby-card h3 {
 
 body.light-mode .section-text p {
   color: #000000;
+}
+
+body.light-mode #hobbies {
+  background-color: #f9f7ff;
+}
+
+body.light-mode #hobbies::before {
+  background-image:
+    radial-gradient(circle at top right, rgba(255, 0, 110, 0.12), transparent 55%),
+    radial-gradient(circle at bottom left, rgba(251, 86, 7, 0.12), transparent 55%),
+    repeating-linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.06) 0,
+      rgba(0, 0, 0, 0.06) 1px,
+      transparent 1px,
+      transparent 18px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0, 0, 0, 0.04) 0,
+      rgba(0, 0, 0, 0.04) 1px,
+      transparent 1px,
+      transparent 18px
+    );
+  opacity: 0.18;
 }
 
 /* ==================== RESPONSIVE ==================== */

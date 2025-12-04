@@ -111,7 +111,7 @@
   <footer class="footer">
     <div class="footer-content">
       <p>© 2025 Jane Faith Marie A. Oblenda</p>
-      <p class="footer-tag">Crafted with creativity and passion</p>
+      <!-- <p class="footer-tag">Crafted with creativity and passion</p> -->
     </div>
   </footer>
 
@@ -338,6 +338,47 @@
     });
 
     gsap.set(".edu-item", { opacity: 0, y: 30 });
+
+    // Education cards parallax interaction
+    const eduSection = document.querySelector("#education");
+    const eduItems = gsap.utils.toArray(".edu-item");
+
+    if (eduSection && eduItems.length) {
+      gsap.set(eduItems, {
+        transformPerspective: 800,
+        transformStyle: "preserve-3d"
+      });
+
+      eduSection.addEventListener("mousemove", (event) => {
+        const bounds = eduSection.getBoundingClientRect();
+        const relX = (event.clientX - bounds.left) / bounds.width - 0.5;  // -0.5 to 0.5
+        const relY = (event.clientY - bounds.top) / bounds.height - 0.5;   // -0.5 to 0.5
+
+        eduItems.forEach((card, index) => {
+          const depth = (index + 1) / eduItems.length; // 0–1 depth factor
+
+          gsap.to(card, {
+            duration: 0.4,
+            x: relX * 30 * depth,
+            y: relY * 20 * depth,
+            rotateY: relX * 12 * depth,
+            rotateX: -relY * 12 * depth,
+            ease: "power2.out"
+          });
+        });
+      });
+
+      eduSection.addEventListener("mouseleave", () => {
+        gsap.to(eduItems, {
+          duration: 0.5,
+          x: 0,
+          y: 0,
+          rotateX: 0,
+          rotateY: 0,
+          ease: "power2.out"
+        });
+      });
+    }
 
     // Hobby cards hover animation
     document.querySelectorAll(".hobby-card").forEach((card) => {
