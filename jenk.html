@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jane Faith Marie A. Oblenda | Creative Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <span class="nav-logo">jenky</span>
+      <ul class="nav-menu">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#hobbies" class="nav-link">Interests</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Jane Faith Marie A. Oblenda</h1>
+      <p class="hero-subtitle">Artist & Content Creator from the Philippines</p>
+      <p class="hero-date">Born: November 23, 2005</p>
+      <div class="scroll-indicator">
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <section id="about" class="section">
+    <div class="section-content">
+      <div class="profile-container">
+        <img src="image02.jpg" alt="Jane Faith Marie A. Oblenda" class="profile-img">
+      </div>
+      <div class="section-text">
+        <h2>About Me</h2>
+        <p>Hello! My name is <strong>Jane</strong>, but I'm known online as <strong>jenky</strong>. I'm a passionate artist from the Philippines dedicated to creating compelling visual content.</p>
+        <p>I work with content creators and serve as one of the content creators for the official Mobile Legends: Bang Bang page. My journey began in Paulina Homes, Dalipuga, Iligan City, where my two older brothers introduced me to the digital world and inspired my creative pursuits.</p>
+        <p>My aspirations include becoming a recognized artist, securing a stable career in my field, and reconnecting with my childhood friends scattered across Mindanao and beyond.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="section">
+    <div class="section-content">
+      <h2>Education</h2>
+      <div class="education-grid">
+        <div class="edu-item">
+          <span class="edu-label">Kindergarten</span>
+          <h3>St. Michael's</h3>
+        </div>
+        <div class="edu-item">
+          <span class="edu-label">Elementary</span>
+          <h3>Abcedarian Elementary School</h3>
+        </div>
+        <div class="edu-item">
+          <span class="edu-label">High School</span>
+          <h3>Iligan City East National High School</h3>
+        </div>
+        <div class="edu-item">
+          <span class="edu-label">Senior High School</span>
+          <h3>Iligan City East National High School</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hobbies" class="section">
+    <div class="section-content">
+      <h2>Hobbies & Interests</h2>
+      <div class="hobbies-container">
+        <div class="hobby-card">
+          <div class="hobby-icon">🎨</div>
+          <h3>Digital Art</h3>
+          <p>Passionate about creating compelling visual content since childhood, pushing creative boundaries daily.</p>
+        </div>
+        <div class="hobby-card">
+          <div class="hobby-icon">🎮</div>
+          <h3>Gaming</h3>
+          <p>Gaming enthusiast who loves collaborative experiences with friends, especially multiplayer adventures.</p>
+        </div>
+        <div class="hobby-card">
+          <div class="hobby-icon">✨</div>
+          <h3>Content Creation</h3>
+          <p>Creating engaging content for various platforms and working alongside fellow creators and brands.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>© 2025 Jane Faith Marie A. Oblenda</p>
+      <p class="footer-tag">Crafted with creativity and passion</p>
+    </div>
+  </footer>
+
+  <!-- GSAP Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <script>
+    // Register ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Navbar animation
+    gsap.from(".navbar", {
+      duration: 1,
+      y: -100,
+      opacity: 0,
+      ease: "power2.out"
+    });
+
+    // Hero content animations
+    const tl = gsap.timeline();
+    tl.from(".hero-title", {
+      duration: 1.2,
+      y: 50,
+      opacity: 0,
+      ease: "power3.out"
+    })
+    .from(".hero-subtitle", {
+      duration: 1,
+      y: 30,
+      opacity: 0,
+      ease: "power3.out"
+    }, "-=0.8")
+    .from(".hero-date", {
+      duration: 1,
+      y: 20,
+      opacity: 0,
+      ease: "power3.out"
+    }, "-=0.8")
+    .from(".scroll-indicator", {
+      duration: 1,
+      opacity: 0,
+      ease: "power2.out"
+    }, "-=0.6");
+
+    // Scroll indicator animation
+    gsap.to(".scroll-indicator span", {
+      duration: 1.5,
+      y: 10,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    // Section animations on scroll
+    gsap.utils.toArray(".section").forEach((section) => {
+      const sectionContent = section.querySelector(".section-content");
+      gsap.from(sectionContent, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          end: "top 20%",
+          scrub: 1
+        },
+        opacity: 0,
+        y: 60,
+        duration: 1
+      });
+    });
+
+    // Stagger animation for h2 headings
+    gsap.utils.toArray(".section h2").forEach((heading) => {
+      gsap.from(heading, {
+        scrollTrigger: {
+          trigger: heading,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        },
+        duration: 0.8,
+        x: -40,
+        opacity: 0,
+        ease: "power2.out"
+      });
+    });
+
+    // Education grid cards stagger
+    gsap.to(".edu-item", {
+      scrollTrigger: {
+        trigger: "#education",
+        start: "top 70%",
+        toggleActions: "play none none none"
+      },
+      duration: 0.6,
+      opacity: 1,
+      y: 0,
+      stagger: 0.15,
+      ease: "power2.out"
+    });
+
+    gsap.set(".edu-item", { opacity: 0, y: 30 });
+
+    // Hobby cards hover animation
+    document.querySelectorAll(".hobby-card").forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, {
+          duration: 0.4,
+          y: -10,
+          boxShadow: "0 20px 50px rgba(0, 0, 0, 0.2)",
+          ease: "power2.out"
+        });
+      });
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, {
+          duration: 0.4,
+          y: 0,
+          boxShadow: "0 5px 20px rgba(0, 0, 0, 0.1)",
+          ease: "power2.out"
+        });
+      });
+    });
+
+    // Hobby cards entrance animation
+    gsap.to(".hobby-card", {
+      scrollTrigger: {
+        trigger: "#hobbies",
+        start: "top 70%",
+        toggleActions: "play none none none"
+      },
+      duration: 0.6,
+      opacity: 1,
+      y: 0,
+      stagger: 0.2,
+      ease: "power2.out"
+    });
+
+    gsap.set(".hobby-card", { opacity: 0, y: 40 });
+
+    // Profile image animation
+    gsap.from(".profile-img", {
+      scrollTrigger: {
+        trigger: "#about",
+        start: "top 60%",
+        toggleActions: "play none none none"
+      },
+      duration: 1.2,
+      scale: 0.8,
+      opacity: 0,
+      ease: "power3.out"
+    });
+
+    // Continuous subtle profile image rotation on scroll
+    gsap.to(".profile-img", {
+      scrollTrigger: {
+        trigger: "#about",
+        start: "top center",
+        end: "bottom center",
+        scrub: 2
+      },
+      rotation: 5,
+      duration: 1
+    });
+  </script>
+</body>
+
+</html>
